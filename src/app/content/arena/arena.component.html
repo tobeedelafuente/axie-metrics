@@ -1,0 +1,55 @@
+<div class="container">
+  <!-- <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="rangePicker">
+        <input matStartDate placeholder="Start date">
+        <input matEndDate placeholder="End date">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
+      <mat-date-range-picker #rangePicker>
+        <mat-date-range-picker-actions>
+          <button mat-button matDateRangePickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
+        </mat-date-range-picker-actions>
+      </mat-date-range-picker>
+    </mat-form-field>
+  </div> -->
+
+  <div class="table-container">
+    <h2>Arena</h2>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element"> 
+          {{ element.date }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="win">
+        <th mat-header-cell *matHeaderCellDef>Win</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.win }}
+        </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="lose">
+        <th mat-header-cell *matHeaderCellDef>Lose</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.lose }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="winRate">
+        <th mat-header-cell *matHeaderCellDef>Win Rate</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.win / (element.win + element.lose) | percent }}
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+</div>
