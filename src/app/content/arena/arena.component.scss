@@ -1,18 +1,19 @@
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
 }
 
 .table-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 60%;
+  height: 450px;
+  overflow: auto;
 }
 
 table {
-  width: 60%;
+  width: 100%;
 }
 
 .mat-header-cell, .mat-cell {

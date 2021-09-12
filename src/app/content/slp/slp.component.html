@@ -1,5 +1,5 @@
 <div class="container">
-  <mat-form-field appearance="fill">
+  <!-- <mat-form-field appearance="fill">
     <mat-label>Enter a date range</mat-label>
     <mat-date-range-input [rangePicker]="rangePicker">
       <input matStartDate placeholder="Start date">
@@ -12,5 +12,37 @@
         <button mat-raised-button color="primary" matDateRangePickerApply>Apply</button>
       </mat-date-range-picker-actions>
     </mat-date-range-picker>
-  </mat-form-field>
+  </mat-form-field> -->
+
+  <div class="table-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element"> 
+          {{ element.date }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="slp">
+        <th mat-header-cell *matHeaderCellDef>SLP</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.slp }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="php">
+        <th mat-header-cell *matHeaderCellDef>PHP</th>
+        <td mat-cell *matCellDef="let element">
+          ₱{{ element.slp * conversion }}
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <button mat-fab color="primary" aria-label="Add" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>

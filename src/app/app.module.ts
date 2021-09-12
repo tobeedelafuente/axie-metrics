@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContentComponent } from './content/content.component';
@@ -17,9 +18,13 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ArenaDialogComponent } from './content/arena/arena-dialog/arena-dialog.component';
+import { SlpDialogComponent } from './content/slp/slp-dialog/slp-dialog.component';
 
 const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -28,9 +33,11 @@ const MATERIAL_MODULES = [
   MatTableModule,
   MatDatepickerModule,
   MatFormFieldModule,
+  MatInputModule,
   MatNativeDateModule,
   MatButtonModule,
   MatListModule,
+  MatDialogModule,
 ];
 
 @NgModule({
@@ -42,17 +49,21 @@ const MATERIAL_MODULES = [
     MiscComponent,
     ArenaComponent,
     SlpComponent,
+    ArenaDialogComponent,
+    SlpDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     ...MATERIAL_MODULES,
   ],
   exports: [
     ...MATERIAL_MODULES,
   ],
   providers: [MatNativeDateModule],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
