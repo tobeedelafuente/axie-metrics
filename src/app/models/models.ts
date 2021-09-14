@@ -1,15 +1,17 @@
+import { Timestamp } from '@firebase/firestore-types';
+
 export interface MMRChart {
   bracket: string;
   reward: string;
 }
 
 export interface ArenaMetrics {
-  date: string;
+  date: Timestamp;
   win: number;
   lose: number;
 }
 
 export interface SLPMetrics {
-  date: string;
+  date: Timestamp;
   slp: number;
 }

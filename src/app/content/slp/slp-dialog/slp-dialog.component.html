@@ -9,13 +9,12 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>SLP</mat-label>
-      <input matInput type="number" formControlName="{{fields.SLP}}">
+      <input matInput type="number" cdkFocusInitial formControlName="{{fields.SLP}}">
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button
-          cdkFocusInitial 
           color="primary" 
           [disabled]="!form.valid"
           (click)="onAdd()">ADD</button>

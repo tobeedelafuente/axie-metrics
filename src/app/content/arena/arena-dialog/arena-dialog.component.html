@@ -10,7 +10,7 @@
     <div class="input-fields">
       <mat-form-field appearance="outline">
         <mat-label>Win</mat-label>
-        <input matInput type="number" formControlName="{{fields.WIN}}">
+        <input matInput type="number" cdkFocusInitial formControlName="{{fields.WIN}}">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Lose</mat-label>
@@ -21,7 +21,6 @@
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button
-          cdkFocusInitial 
           color="primary" 
           [disabled]="!form.valid"
           (click)="onAdd()">ADD</button>

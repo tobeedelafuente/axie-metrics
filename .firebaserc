@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "axie-metrics": {
+      "hosting": {
+        "axie-metrics": [
+          "axie-metrics"
+        ]
+      }
+    }
+  }
+}

@@ -1,19 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ArenaMetrics } from '../../models/models';
+import { compareDates } from '../../utils/dates';
 import { ArenaDialogComponent } from './arena-dialog/arena-dialog.component';
 
-const DATA: ArenaMetrics[] = [
-  { date: 'September 3, 2021', win: 9, lose: 3 },
-  { date: 'September 4, 2021', win: 8, lose: 6 },
-  { date: 'September 5, 2021', win: 6, lose: 9 },
-  { date: 'September 6, 2021', win: 8, lose: 6 },
-  { date: 'September 7, 2021', win: 4, lose: 11 },
-  { date: 'September 8, 2021', win: 8, lose: 7 },
-  { date: 'September 9, 2021', win: 10, lose: 6 },
-  { date: 'September 10, 2021', win: 12, lose: 5 },
-  { date: 'September 11, 2021', win: 13, lose: 7 },
-];
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-arena',
@@ -21,12 +13,23 @@ const DATA: ArenaMetrics[] = [
   styleUrls: ['./arena.component.scss']
 })
 export class ArenaComponent implements OnInit {
+  private collections: AngularFirestoreCollection<ArenaMetrics>;
+  metrics: Observable<ArenaMetrics[]>;
   displayedColumns: string[] = ['date', 'win', 'lose', 'winRate'];
-  dataSource = DATA;
+  dataSource: ArenaMetrics[] = [];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private afs: AngularFirestore) {
+    this.collections = afs.collection<ArenaMetrics>('arena');
+    this.metrics = this.collections.valueChanges();
+  }
 
   ngOnInit(): void {
+    this.metrics.subscribe(data => {
+      data = data.sort((a, b) => {
+        return b.date.seconds - a.date.seconds;
+      })
+      this.dataSource = data;
+    });
   }
 
   openDialog(): void {
@@ -36,12 +39,24 @@ export class ArenaComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
+        if (!this.dataSource.find(d => compareDates(d.date.toDate(), result.date))) {
+          this.collections.add(result);
+        }
       }
     });
   }
 
-  onAdd() {
-    
+  getTotalWins(): number {
+    return this.dataSource.map(t => t.win).reduce((acc, value) => acc + value, 0);
+  }
+
+  getTotalLosses(): number {
+    return this.dataSource.map(t => t.lose).reduce((acc, value) => acc + value, 0);
+  }
+
+  getAverageWinRate(): number {
+    const wins = this.getTotalWins();
+    const losses = this.getTotalLosses();
+    return wins / (wins + losses);
   }
 }
