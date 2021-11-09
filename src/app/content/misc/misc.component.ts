@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { MMRChart } from '../../models/models';
 
 const DATA: MMRChart[] = [
-  { bracket: '800 - 950', reward: '1 SLP' },
-  { bracket: '950 – 1150', reward: '3-4 SLP' },
-  { bracket: '1150 – 1350', reward: '6 SLP' },
-  { bracket: '1350 – 1450', reward: '9 SLP' },
-  { bracket: '1450 – 1550', reward: '12 SLP' },
-  { bracket: '1550 – 1650', reward: '15 SLP' },
-  { bracket: '1650 – 1750', reward: '18 SLP' },
-  { bracket: '1750+', reward: '20 SLP' },
+  { bracket: '0 – 799', reward: '0 SLP' },
+  { bracket: '800 – 999', reward: '1 SLP' },
+  { bracket: '1000 – 1099', reward: '3 SLP' },
+  { bracket: '1100 – 1299', reward: '6 SLP' },
+  { bracket: '1300 – 1499', reward: '9 SLP' },
+  { bracket: '1500 – 1799', reward: '12 SLP' },
+  { bracket: '1800 – 1999', reward: '15 SLP' },
+  { bracket: '2000 – 2199', reward: '18 SLP' },
+  { bracket: '2200 – 6999', reward: '21 SLP' },
 ];
 
 @Component({
@@ -20,7 +21,6 @@ const DATA: MMRChart[] = [
 export class MiscComponent implements OnInit {
   displayedColumns: string[] = ['bracket', 'reward'];
   dataSource = DATA;
-  season = '18';
 
   constructor() { }
 

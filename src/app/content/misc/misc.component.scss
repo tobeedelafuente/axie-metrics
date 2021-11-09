@@ -19,3 +19,9 @@ table {
   font-size: 14px;
   color: black;
 }
+
+@media (max-width: 500px) {
+  table {
+    width: 90%;
+  }
+}

@@ -1,4 +1,16 @@
 <mat-toolbar color="primary">
-  <span>AXIE METRICS</span>
+  <img src="../../assets/logo.png"/>
   <span class="spacer"></span>
+  <div *ngIf="auth.user | async; else showLogin">
+    <button mat-button color="white" aria-label="Logout" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      LOGOUT
+    </button>
+  </div>
+  <ng-template #showLogin>
+    <button mat-button color="white" aria-label="Login" (click)="login()">
+      <mat-icon>login</mat-icon>
+      LOGIN
+    </button>
+  </ng-template>
 </mat-toolbar>

@@ -14,12 +14,18 @@
   margin-bottom: 20px;
 
   .total-card {
-    flex: 0.3;
+    flex: 0.48;
 
     .total-card-title {
       font-weight: bold;
       font-size: 16px;
       margin-bottom: 10px;
+    }
+    
+    .total-card-subtitle {
+      font-size: 10px;
+      color: gray;
+      margin-top: -10px;
     }
   }
 }

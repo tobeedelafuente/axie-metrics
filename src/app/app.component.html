@@ -1,4 +1,6 @@
 <app-navbar></app-navbar>
-<app-content></app-content>
-<app-footer></app-footer>
+<div *ngIf="auth.user | async">
+  <app-content></app-content>
+  <app-footer></app-footer>
+</div>
 <router-outlet></router-outlet>

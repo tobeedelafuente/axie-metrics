@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Earning Details</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Entry Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="{{fields.DATE}}">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>SLP</mat-label>
+      <input matInput type="number" cdkFocusInitial formControlName="{{fields.SLP}}">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Conversion</mat-label>
+      <input matInput type="number" cdkFocusInitial formControlName="{{fields.CONVERSION}}">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button
+          color="primary" 
+          [disabled]="!form.valid"
+          (click)="onAdd()">ADD</button>
+</div>

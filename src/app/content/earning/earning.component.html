@@ -1,37 +1,14 @@
 <div class="container">
-  <!-- <mat-form-field appearance="outline">
-    <mat-label>Enter Date Range</mat-label>
-    <mat-date-range-input [rangePicker]="rangePicker" [formGroup]="dateRange">
-      <input matStartDate formControlName="startDate">
-      <input matEndDate formControlName="endDate">
-    </mat-date-range-input>
-    <mat-datepicker-toggle matSuffix [for]="rangePicker"></mat-datepicker-toggle>
-    <mat-date-range-picker #rangePicker>
-      <mat-date-range-picker-actions>
-        <button mat-button matDateRangePickerCancel>CANCEL</button>
-        <button mat-raised-button color="primary" matDateRangePickerApply>ADD</button>
-      </mat-date-range-picker-actions>
-    </mat-date-range-picker>
-  </mat-form-field> -->
-
   <div class="totals-container">
     <mat-card class="total-card mat-elevation-z6">
       <mat-card-content class="center-text">
-        <div class="total-card-title">Current SLP</div>
-        <div class="total-card-subtitle">(Total: {{ getTotalSlp()}})</div>
-        <div>{{ getTotalSlp() - getTotalSlpWithdrawn() }}</div>
+        <div class="total-card-title">Total SLP</div>
+        <div>{{ getTotalSlp() }}</div>
       </mat-card-content>
     </mat-card>
     <mat-card class="total-card mat-elevation-z6">
       <mat-card-content class="center-text">
-        <div class="total-card-title">Total Days Played</div>
-        <div>{{ getTotalDaysPlayed() }}</div>
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="total-card mat-elevation-z6">
-      <mat-card-content class="center-text">
-        <div class="total-card-title">Potential Earnings</div>
-        <div class="total-card-subtitle">@ ₱{{ conversion | number:'1.2-2' }} per SLP</div>
+        <div class="total-card-title">Total Earnings</div>
         <div>₱{{ getTotalEarnings() | number:'1.2-2' }}</div>
       </mat-card-content>
     </mat-card>
@@ -53,10 +30,17 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="php">
+      <ng-container matColumnDef="conversion">
+        <th mat-header-cell *matHeaderCellDef>SLP to PHP</th>
+        <td mat-cell *matCellDef="let element">
+          ₱{{ element.conversion | number:'1.2-2' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="earning">
         <th mat-header-cell *matHeaderCellDef>Earnings</th>
         <td mat-cell *matCellDef="let element">
-          ₱{{ element.slp * conversion | number:'1.2-2' }}
+          ₱{{ element.slp  * element.conversion | number:'1.2-2' }}
         </td>
       </ng-container>
     

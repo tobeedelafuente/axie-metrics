@@ -5,3 +5,29 @@ svg#clouds {
   z-index: -10;
   width: 1920px;
 }
+
+img {
+  position: fixed;
+  z-index: -10;
+}
+
+#plant {
+  top: 300px;
+}
+
+#aqua1 {
+  top: 300px;
+  right: 10px;
+  transform: scaleX(-1);
+}
+
+#aqua2 {
+  top: 300px;
+  right: -300px;
+}
+
+@media (max-width: 800px) {
+  img {
+    display: none;
+  }
+}

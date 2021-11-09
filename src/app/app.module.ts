@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,8 +14,12 @@ import { ContentComponent } from './content/content.component';
 import { MiscComponent } from './content/misc/misc.component';
 import { ArenaComponent } from './content/arena/arena.component';
 import { SlpComponent } from './content/slp/slp.component';
+import { EarningComponent } from './content/earning/earning.component';
 import { ArenaDialogComponent } from './content/arena/arena-dialog/arena-dialog.component';
 import { SlpDialogComponent } from './content/slp/slp-dialog/slp-dialog.component';
+import { EarningDialogComponent } from './content/earning/earning-dialog/earning-dialog.component';
+
+import { environment } from 'src/environments/environment';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -28,6 +33,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -42,17 +48,8 @@ const MATERIAL_MODULES = [
   MatListModule,
   MatDialogModule,
   MatCardModule,
+  MatTooltipModule,
 ];
-
-const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyBnIQ3Tqg5SAAUEH9plz7H0MIQEZYmBHNY",
-  authDomain: "axie-metrics.firebaseapp.com",
-  projectId: "axie-metrics",
-  storageBucket: "axie-metrics.appspot.com",
-  messagingSenderId: "885041614160",
-  appId: "1:885041614160:web:86c3e2d2bced424847b055",
-  measurementId: "G-P639SJ4SSK"
-};
 
 @NgModule({
   declarations: [
@@ -65,6 +62,8 @@ const FIREBASE_CONFIG = {
     SlpComponent,
     ArenaDialogComponent,
     SlpDialogComponent,
+    EarningComponent,
+    EarningDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,8 +71,9 @@ const FIREBASE_CONFIG = {
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    HttpClientModule,
     ...MATERIAL_MODULES,
   ],
   exports: [

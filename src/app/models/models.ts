@@ -15,3 +15,9 @@ export interface SLPMetrics {
   date: Timestamp;
   slp: number;
 }
+
+export interface EarningMetrics {
+  date: Timestamp;
+  slp: number;
+  conversion: number;
+}
