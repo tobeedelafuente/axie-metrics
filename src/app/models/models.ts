@@ -6,12 +6,14 @@ export interface MMRChart {
 }
 
 export interface ArenaMetrics {
+  id?: string;
   date: Timestamp;
   win: number;
   lose: number;
 }
 
 export interface SLPMetrics {
+  id?: string;
   date: Timestamp;
   slp: number;
 }

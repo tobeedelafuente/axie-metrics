@@ -20,7 +20,7 @@ export class ArenaComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private afs: AngularFirestore) {
     this.collections = afs.collection<ArenaMetrics>('arena');
-    this.metrics = this.collections.valueChanges();
+    this.metrics = this.collections.valueChanges({ idField: 'id' });
   }
 
   ngOnInit(): void {
@@ -39,8 +39,13 @@ export class ArenaComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if (!this.dataSource.find(d => compareDates(d.date.toDate(), result.date))) {
+        const data = this.dataSource.find(d => compareDates(d.date.toDate(), result.date));
+        if (!data) {
           this.collections.add(result);
+        } else {
+          if (data.id) {
+            this.collections.doc<ArenaMetrics>(data.id).update(result);
+          }
         }
       }
     });

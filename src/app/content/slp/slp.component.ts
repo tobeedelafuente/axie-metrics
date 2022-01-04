@@ -32,7 +32,7 @@ export class SlpComponent implements OnInit {
     private service: ConversionService) {
     this.slpCollection = afs.collection<SLPMetrics>('slp');
     this.earningCollection = afs.collection<EarningMetrics>('earning');
-    this.slpMetrics = this.slpCollection.valueChanges();
+    this.slpMetrics = this.slpCollection.valueChanges({ idField: 'id' });
     this.earningMetrics = this.earningCollection.valueChanges();
   }
 
@@ -65,8 +65,13 @@ export class SlpComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if (!this.dataSource.find(d => compareDates(d.date.toDate(), result.date))) {
+        const slpMetrics = this.dataSource.find(d => compareDates(d.date.toDate(), result.date));
+        if (!slpMetrics) {
           this.slpCollection.add(result);
+        } else {
+          if (slpMetrics.id) {
+            this.slpCollection.doc<SLPMetrics>(slpMetrics.id).update(result);
+          }
         }
       }
     });
